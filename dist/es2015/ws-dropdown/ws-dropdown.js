@@ -73,6 +73,7 @@ export var WSDropdown = function (_Component) {
       writable: true,
       value: function value(type, data) {
         if (type === 'change') {
+          console.log(_this.state.items.indexOf(data), data);
           _this.close();
           _this.setValue(data);
         } else if (type === 'change-size') {
@@ -159,7 +160,7 @@ export var WSDropdown = function (_Component) {
       }
       value = this.enrichItems(value);
       var text = this.getTextFromValue(props.value, props.text);
-      var state = { text: text, value: value, items: items };
+      var state = { text: text, value: value, items: items, filter: props.filter };
 
       state.items.forEach(function (item) {
         var isActive = !!state.value.find(function (val) {
@@ -341,8 +342,9 @@ export var WSDropdown = function (_Component) {
         items: this.state.items,
         value: this.state.value,
         limit: this.props.limit,
+        filter: this.state.filter,
         filterable: this.props.filterable,
-        filter: this.props.filter,
+        filtered: this.props.filtered,
         placeholder: this.props.placeholder,
         selectAll: this.props.selectAll,
         handle: this.handlePropagation,
@@ -397,6 +399,7 @@ Object.defineProperty(WSDropdown, 'defaultProps', {
     inputOnly: false,
     filterable: false,
     filter: '',
+    filtered: false,
     limit: 10,
     orientation: 'left',
     placeholder: '',
@@ -416,9 +419,10 @@ Object.defineProperty(WSDropdown, 'propTypes', {
     icon: PropTypes.string,
     items: PropTypes.array,
     multiple: PropTypes.bool,
-    filterable: PropTypes.bool,
     inputOnly: PropTypes.bool,
+    filterable: PropTypes.bool,
     filter: PropTypes.string,
+    filtered: PropTypes.bool,
     limit: PropTypes.number,
     orientation: PropTypes.oneOf(['left', 'right']),
     placeholder: PropTypes.string,
