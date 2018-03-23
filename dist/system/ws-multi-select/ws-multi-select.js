@@ -1,7 +1,7 @@
 System.register(['../imports', '../ws-dropdown/ws-dropdown'], function (_export, _context) {
   "use strict";
 
-  var React, PropTypes, WSDropdown, _extends, _createClass, _get, WSMultiSelect;
+  var React, WSDropdown, _extends, _createClass, _get, WSMultiSelect;
 
   function _toConsumableArray(arr) {
     if (Array.isArray(arr)) {
@@ -48,7 +48,6 @@ System.register(['../imports', '../ws-dropdown/ws-dropdown'], function (_export,
   return {
     setters: [function (_imports) {
       React = _imports.React;
-      PropTypes = _imports.PropTypes;
     }, function (_wsDropdownWsDropdown) {
       WSDropdown = _wsDropdownWsDropdown.WSDropdown;
     }],
@@ -158,6 +157,7 @@ System.register(['../imports', '../ws-dropdown/ws-dropdown'], function (_export,
             window.select = this;
             this.input.addEventListener('keyup', this.onKeyUp);
             this.input.addEventListener('focus', this.onFocus);
+            this.input.addEventListener('change', this.onChange);
             this.input.addEventListener('blur', this.onBlur);
           }
         }, {
@@ -165,7 +165,13 @@ System.register(['../imports', '../ws-dropdown/ws-dropdown'], function (_export,
           value: function componentWillUnmount() {
             this.input.removeEventListener('keyup', this.onKeyUp);
             this.input.removeEventListener('focus', this.onFocus);
+            this.input.removeEventListener('change', this.onChange);
             this.input.removeEventListener('blur', this.onBlur);
+          }
+        }, {
+          key: 'onChange',
+          value: function onChange(event) {
+            event.stopPropagation();
           }
         }, {
           key: 'setValue',
@@ -214,7 +220,7 @@ System.register(['../imports', '../ws-dropdown/ws-dropdown'], function (_export,
                 this.state.value.map(function (item, index) {
                   return React.createElement(
                     'li',
-                    { key: 'selected-item-' + index },
+                    { key: 'selected-item-' + index, title: item.label },
                     React.createElement(
                       'span',
                       { className: 'text' },

@@ -12,7 +12,7 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-import { React, PropTypes } from '../imports';
+import { React } from '../imports';
 import { WSDropdown } from '../ws-dropdown/ws-dropdown';
 
 export var WSMultiSelect = function (_WSDropdown) {
@@ -63,6 +63,7 @@ export var WSMultiSelect = function (_WSDropdown) {
       window.select = this;
       this.input.addEventListener('keyup', this.onKeyUp);
       this.input.addEventListener('focus', this.onFocus);
+      this.input.addEventListener('change', this.onChange);
       this.input.addEventListener('blur', this.onBlur);
     }
   }, {
@@ -70,7 +71,13 @@ export var WSMultiSelect = function (_WSDropdown) {
     value: function componentWillUnmount() {
       this.input.removeEventListener('keyup', this.onKeyUp);
       this.input.removeEventListener('focus', this.onFocus);
+      this.input.removeEventListener('change', this.onChange);
       this.input.removeEventListener('blur', this.onBlur);
+    }
+  }, {
+    key: 'onChange',
+    value: function onChange(event) {
+      event.stopPropagation();
     }
   }, {
     key: 'setValue',
@@ -119,7 +126,7 @@ export var WSMultiSelect = function (_WSDropdown) {
           this.state.value.map(function (item, index) {
             return React.createElement(
               'li',
-              { key: 'selected-item-' + index },
+              { key: 'selected-item-' + index, title: item.label },
               React.createElement(
                 'span',
                 { className: 'text' },

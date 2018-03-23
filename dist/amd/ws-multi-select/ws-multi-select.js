@@ -153,6 +153,7 @@ define(['exports', '../imports', '../ws-dropdown/ws-dropdown'], function (export
         window.select = this;
         this.input.addEventListener('keyup', this.onKeyUp);
         this.input.addEventListener('focus', this.onFocus);
+        this.input.addEventListener('change', this.onChange);
         this.input.addEventListener('blur', this.onBlur);
       }
     }, {
@@ -160,7 +161,13 @@ define(['exports', '../imports', '../ws-dropdown/ws-dropdown'], function (export
       value: function componentWillUnmount() {
         this.input.removeEventListener('keyup', this.onKeyUp);
         this.input.removeEventListener('focus', this.onFocus);
+        this.input.removeEventListener('change', this.onChange);
         this.input.removeEventListener('blur', this.onBlur);
+      }
+    }, {
+      key: 'onChange',
+      value: function onChange(event) {
+        event.stopPropagation();
       }
     }, {
       key: 'setValue',
@@ -209,7 +216,7 @@ define(['exports', '../imports', '../ws-dropdown/ws-dropdown'], function (export
             this.state.value.map(function (item, index) {
               return _imports.React.createElement(
                 'li',
-                { key: 'selected-item-' + index },
+                { key: 'selected-item-' + index, title: item.label },
                 _imports.React.createElement(
                   'span',
                   { className: 'text' },
