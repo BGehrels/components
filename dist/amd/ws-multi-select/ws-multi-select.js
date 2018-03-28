@@ -119,7 +119,14 @@ define(['exports', '../imports', '../ws-dropdown/ws-dropdown'], function (export
         args[_key] = arguments[_key];
       }
 
-      return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = WSMultiSelect.__proto__ || Object.getPrototypeOf(WSMultiSelect)).call.apply(_ref, [this].concat(args))), _this), Object.defineProperty(_this, 'onKeyUp', {
+      return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = WSMultiSelect.__proto__ || Object.getPrototypeOf(WSMultiSelect)).call.apply(_ref, [this].concat(args))), _this), Object.defineProperty(_this, 'onClickIcon', {
+        enumerable: true,
+        writable: true,
+        value: function value(event) {
+          event.stopPropagation();
+          _this.input.focus();
+        }
+      }), Object.defineProperty(_this, 'onKeyUp', {
         enumerable: true,
         writable: true,
         value: function value(event) {
@@ -155,6 +162,7 @@ define(['exports', '../imports', '../ws-dropdown/ws-dropdown'], function (export
         this.input.addEventListener('focus', this.onFocus);
         this.input.addEventListener('change', this.onChange);
         this.input.addEventListener('blur', this.onBlur);
+        this.icon.addEventListener('click', this.onClickIcon);
       }
     }, {
       key: 'componentWillUnmount',
@@ -163,6 +171,7 @@ define(['exports', '../imports', '../ws-dropdown/ws-dropdown'], function (export
         this.input.removeEventListener('focus', this.onFocus);
         this.input.removeEventListener('change', this.onChange);
         this.input.removeEventListener('blur', this.onBlur);
+        this.icon.removeEventListener('click', this.onClickIcon);
       }
     }, {
       key: 'onChange',
@@ -197,7 +206,9 @@ define(['exports', '../imports', '../ws-dropdown/ws-dropdown'], function (export
           _imports.React.createElement('input', { type: 'text', placeholder: this.props.placeholder, ref: function ref(element) {
               _this2.input = element;
             } }),
-          _imports.React.createElement('span', { className: 'icon icon24 icon-magnifiying-glass' })
+          _imports.React.createElement('span', { className: 'icon icon16 icon-magnifiying-glass', ref: function ref(element) {
+              _this2.icon = element;
+            } })
         );
       }
     }, {
