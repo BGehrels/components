@@ -155,7 +155,6 @@ define(['exports', '../imports', './dropdown-menu-item'], function (exports, _im
               _this.showChild(data);
               break;
             case 'change':
-              console.log(_this.state.items.indexOf(data), data);
               _this.clearSelections();
 
               if (!_this.context.multiple && !_this.props.filtered) {

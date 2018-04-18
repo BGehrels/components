@@ -82,7 +82,6 @@ var WSDropdown = exports.WSDropdown = function (_Component) {
       writable: true,
       value: function value(type, data) {
         if (type === 'change') {
-          console.log(_this.state.items.indexOf(data), data);
           _this.close();
           _this.setValue(data);
         } else if (type === 'change-size') {
@@ -160,14 +159,12 @@ var WSDropdown = exports.WSDropdown = function (_Component) {
     key: 'createState',
     value: function createState(props) {
       var items = this.enrichItems(props.items);
-      var value = props.value;
-
-      if (typeof value === 'string' && props.type !== 'input') {
-        value = items.find(function (item) {
-          return item.value === value;
+      var value = this.enrichItems(props.value, function (val) {
+        var item = items.find(function (i) {
+          return i.value === val;
         });
-      }
-      value = this.enrichItems(value);
+        return item ? item.label : val;
+      });
       var text = this.getTextFromValue(props.value, props.text);
       var state = { text: text, value: value, items: items, filter: props.filter };
 
@@ -185,21 +182,23 @@ var WSDropdown = exports.WSDropdown = function (_Component) {
     value: function enrichItems(items) {
       var _this3 = this;
 
+      var resolveLabel = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : function (value) {
+        return value;
+      };
+
       var itemsToWrap = items;
 
       if (!Array.isArray(items)) {
-        if (this.props.inputOnly) {
-          return items;
-        }
-
         itemsToWrap = items ? [items] : [];
       }
       return itemsToWrap.map(function (item) {
-        var enriched = (typeof item === 'undefined' ? 'undefined' : _typeof(item)) === 'object' ? item : { label: item, value: item };
-        if (enriched.children) {
-          enriched.children = _this3.enrichItems(enriched.children);
+        if ((typeof item === 'undefined' ? 'undefined' : _typeof(item)) !== 'object') {
+          return { value: item, label: resolveLabel(item) };
         }
-        return enriched;
+        if (item.children) {
+          item.children = _this3.enrichItems(item.children);
+        }
+        return item;
       });
     }
   }, {
