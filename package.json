@@ -3,7 +3,7 @@
   "version": "1.0.43",
   "description": "",
   "scripts": {
-    "start": "webpack-dev-server --progress --colors --content-base build webpack.config.js",
+    "start": "webpack-dev-server --progress --colors --content-base build --config webpack.config.react.js",
     "start:preact": "webpack-dev-server --watch --config webpack.config.preact.js",
     "test": "gulp test",
     "test:react": "gulp test:react",
