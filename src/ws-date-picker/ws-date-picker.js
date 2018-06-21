@@ -119,6 +119,7 @@ export class WSDatePicker extends Component {
       className,
       iconOnly,
       placeholder,
+      onClick,
     } = this.props;
 
     return (
