@@ -150,7 +150,7 @@ export class WSNotification extends Component {
               key={`notification-${i}`}
               ref={element => { this[`notification-${i}`] = element; }}
               onClick={() => this.close(i)}
-              onKeypress={e => {
+              onKeyPress={e => {
                 if (e.key === 'enter') this.close(i);
               }}
             >

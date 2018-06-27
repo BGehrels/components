@@ -116,7 +116,7 @@ export class WSWeekPickerCalendar extends Component {
                         + (this.isToday(year, week) ? 'today ' : '')}
               key={`${monthIndex}_${weekIndex}`}
               onClick={() => this.props.onChange({week, year})}
-              onKeypress={e => {
+              onKeyPress={e => {
                 if (e.key === 'enter') this.props.onChange({week, year});
               }}
             >
@@ -139,7 +139,7 @@ export class WSWeekPickerCalendar extends Component {
             <span
               className="prev"
               onClick={() => this.prevYear()}
-              onKeypress={e => {
+              onKeyPress={e => {
                 if (e.key === 'enter') this.prevYear();
               }}
             >
@@ -150,7 +150,7 @@ export class WSWeekPickerCalendar extends Component {
             <span
               className="next"
               onClick={() => this.nextYear()}
-              onKeypress={e => {
+              onKeyPress={e => {
                 if (e.key === 'enter') this.nextYear();
               }}
             >

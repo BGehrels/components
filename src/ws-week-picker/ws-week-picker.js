@@ -115,7 +115,7 @@ export class WSWeekPicker extends Component {
         <span
           className={`icon icon16 ${this.state.show ? '' : 'icon-calendar'}`}
           onClick={() => this.toggleCalendar()}
-          onKeypress={e => {
+          onKeyPress={e => {
             if (e.key === 'enter') this.toggleCalendar();
           }}
         />

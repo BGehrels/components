@@ -59,7 +59,7 @@ export class Tile extends Component {
         className={`tile ${groupName} ${className}`}
         style={style}
         onClick={() => this.props.onClick(groupName, identifier)}
-        onKeypress={e => {
+        onKeyPress={e => {
           if (e.key === 'enter') this.props.onClick(groupName, identifier);
         }}
         onMouseEnter={this.props.onMouseEnter}

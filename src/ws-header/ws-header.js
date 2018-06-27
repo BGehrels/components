@@ -335,7 +335,7 @@ export class WSHeader extends Component {
                 <a // eslint-disable-line jsx-a11y/anchor-is-valid
                   role="button"
                   onClick={() => this.login()}
-                  onKeypress={e => {
+                  onKeyPress={e => {
                     if (e.key === 'enter') this.login();
                   }}
                   tabIndex={0}
@@ -362,7 +362,7 @@ export class WSHeader extends Component {
           onMouseEnter={() => this.enterLevel2()}
           onMouseLeave={() => this.leaveLevel2()}
           onClick={() => this.leaveLevel2()}
-          onKeypress={e => {
+          onKeyPress={e => {
             if (e.key === 'enter') this.leaveLevel2();
           }}
           ref={element => { this.level2 = element; }}
