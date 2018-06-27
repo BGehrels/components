@@ -46,7 +46,7 @@ export class DropdownMenu extends Component {
     limit: PropTypes.number,
     selectAll: PropTypes.bool,
     value: PropTypes.array || PropTypes.string,
-    handle: PropTypes.function
+    handle: PropTypes.func
   };
 
   /**

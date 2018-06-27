@@ -94,7 +94,7 @@ export class WSInlineEdit extends Component {
       <div
         className="ws-inline-edit"
         onClick={() => this.editElement()}
-        onKeypress={e => {
+        onKeyPress={e => {
           if (e.key === 'enter') this.editElement();
         }}
       >
