@@ -17,7 +17,7 @@ import { WSHeader } from '../src/ws-header/ws-header';
 import { WSDatePicker } from '../src/ws-date-picker/ws-date-picker';
 import { WSNotification } from '../src/ws-notification/ws-notification';
 import { WSSpinner } from '../src/ws-spinner/ws-spinner';
-import { WSDropdown } from '../src/ws-spinner/ws-dropdown';
+import { WSDropdown } from '../src/ws-dropdown/ws-dropdown';
 
 export default {
   WSHeader,
